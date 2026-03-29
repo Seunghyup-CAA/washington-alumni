@@ -98,10 +98,8 @@
 
     /* ── TOPBAR ── */
     .topbar {
-      position: sticky; top: 0; z-index: 50;
       background: rgba(13,34,64,.97);
       border-bottom: 1px solid rgba(200,168,75,.25);
-      backdrop-filter: blur(10px);
     }
     .inner { width: min(var(--maxw), calc(100vw - 24px)); margin: 0 auto; }
     .topbar-inner {
@@ -172,7 +170,7 @@
     .stat-label { font-size: .72rem; color: rgba(255,255,255,.5); margin-top: 2px; }
 
     /* ── SECTIONS ── */
-    .section { padding: 40px 0 10px; scroll-margin-top: 72px; }
+    .section { padding: 40px 0 10px; }
     .section-head { margin-bottom: 18px; }
     .section-title {
       font-family: 'Noto Serif KR', serif;
@@ -240,7 +238,7 @@
     .panel {
       background: var(--paper); border: 1px solid var(--line);
       border-radius: 20px; box-shadow: var(--shadow);
-      padding: 20px; margin-bottom: 20px; scroll-margin-top: 72px;
+      padding: 20px; margin-bottom: 20px;
     }
     .filter-grid { display: grid; grid-template-columns: 2fr 1fr auto; gap: 10px; align-items: center; }
     .sort-btns { display: flex; gap: 6px; }
