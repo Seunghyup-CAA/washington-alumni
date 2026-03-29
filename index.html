@@ -125,6 +125,11 @@
     .nav-btn:hover { background: rgba(255,255,255,.1); color: #fff; }
     .nav-btn.gold { background: var(--gold); color: var(--navy); border-color: var(--gold); font-weight: 700; }
     .nav-btn.gold:hover { background: var(--gold2); }
+    .hamburger {
+      display: none; background: none; border: 1px solid rgba(255,255,255,.3);
+      border-radius: 8px; padding: 6px 12px; cursor: pointer;
+      color: #fff; font-size: 1.3rem; line-height: 1;
+    }
 
     /* ── HERO ── */
     .hero {
@@ -351,8 +356,20 @@
       .ad-grid { grid-template-columns: repeat(2,1fr); }
     }
     @media (max-width: 640px) {
-      .topbar-inner { flex-direction: column; align-items: flex-start; min-height: auto; padding: 10px 4px; }
-      .nav-actions { width: 100%; }
+      .hamburger { display: block; }
+      .topbar-inner { flex-wrap: wrap; min-height: auto; padding: 8px 4px; align-items: center; flex-direction: row; }
+      .nav-actions {
+        display: none; flex-direction: column; width: 100%;
+        background: rgba(13,34,64,.98);
+        border-top: 1px solid rgba(255,255,255,.1);
+        padding: 6px 0; gap: 0;
+      }
+      .nav-actions.open { display: flex; }
+      .nav-actions .nav-btn {
+        width: 100%; text-align: left; border-radius: 0;
+        padding: 11px 16px; border: none;
+        border-bottom: 1px solid rgba(255,255,255,.06);
+      }
       .hero { padding: 36px 0 40px; }
       .hero-stats { grid-template-columns: repeat(2,1fr); max-width: 100%; }
       .filter-grid { grid-template-columns: 1fr; }
@@ -396,16 +413,17 @@
           <div class="brand-sub">Chung-Ang University · Washington Alumni Association</div>
         </div>
       </div>
-      <div class="nav-actions">
-        <a class="nav-btn" href="#" onclick="navGo('directory');return false;">주소록</a>
-        <a class="nav-btn" href="#" onclick="navGo('notice');return false;">공지</a>
-        <a class="nav-btn" href="#" onclick="navGo('ads');return false;">동문광고</a>
-        <a class="nav-btn" href="#" onclick="navGo('history');return false;">약사</a>
+      <div class="nav-actions" id="navMenu">
+        <a class="nav-btn" href="#" onclick="navGo('directory');closeMenu();return false;">주소록</a>
+        <a class="nav-btn" href="#" onclick="navGo('notice');closeMenu();return false;">공지</a>
+        <a class="nav-btn" href="#" onclick="navGo('ads');closeMenu();return false;">동문광고</a>
+        <a class="nav-btn" href="#" onclick="navGo('history');closeMenu();return false;">약사</a>
         <a class="nav-btn gold" href="javascript:void(0)" onclick="openLink('mailto:caudc.alumni@gmail.com?subject=신규 등록 요청&body=이름:%0A주소:%0A전화:%0A이메일:%0A전공:%0A학번:%0A도미년도:')">신규등록</a>
         <button class="nav-btn" style="background:rgba(200,168,75,.15);border-color:var(--gold);color:var(--gold2);" onclick="sendBulkEmail()">📢 전체공지</button>
         <button class="nav-btn" onclick="logout()">잠금</button>
         <button class="nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">맨위로 ↑</button>
       </div>
+      <button class="hamburger" onclick="toggleMenu()">☰</button>
     </div>
   </header>
 
@@ -644,6 +662,14 @@
     if(!confirm(confirm_msg)) return;
 
     openLink(`mailto:?bcc=${emails}&subject=${subject}&body=${body}`);
+  }
+
+  function toggleMenu(){
+    const m = document.getElementById('navMenu');
+    m.classList.toggle('open');
+  }
+  function closeMenu(){
+    document.getElementById('navMenu').classList.remove('open');
   }
 
   function openLink(url){
