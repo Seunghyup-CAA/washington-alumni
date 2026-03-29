@@ -354,20 +354,13 @@
       .ad-grid { grid-template-columns: repeat(2,1fr); }
     }
     @media (max-width: 640px) {
-      .hamburger { display: block; }
-      .topbar-inner { flex-wrap: wrap; min-height: auto; padding: 8px 4px; align-items: center; flex-direction: row; }
+      .hamburger { display: none; }
+      .topbar-inner { flex-wrap: wrap; min-height: auto; padding: 8px 4px; }
       .nav-actions {
-        display: none; flex-direction: column; width: 100%;
-        background: rgba(13,34,64,.98);
-        border-top: 1px solid rgba(255,255,255,.1);
-        padding: 6px 0; gap: 0;
+        display: flex; flex-wrap: wrap; width: 100%;
+        gap: 5px; padding: 4px 0;
       }
-      .nav-actions.open { display: flex; }
-      .nav-actions .nav-btn {
-        width: 100%; text-align: left; border-radius: 0;
-        padding: 11px 16px; border: none;
-        border-bottom: 1px solid rgba(255,255,255,.06);
-      }
+      .nav-actions .nav-btn { padding: 6px 10px; font-size: .74rem; }
       .hero { padding: 36px 0 40px; }
       .hero-stats { grid-template-columns: repeat(2,1fr); max-width: 100%; }
       .filter-grid { grid-template-columns: 1fr; }
@@ -421,7 +414,6 @@
         <button class="nav-btn" onclick="logout()">잠금</button>
         <button class="nav-btn" onclick="window.scrollTo({top:0,behavior:'smooth'})">맨위로 ↑</button>
       </div>
-      <button class="hamburger" onclick="toggleMenu()">☰</button>
     </div>
   </header>
 
