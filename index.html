@@ -113,7 +113,7 @@
       font-family: 'Noto Serif KR', serif;
       font-size: 1.6rem; font-weight: 700; letter-spacing: -.03em;
     }
-    .brand-main span { color: var(--gold); }
+    .brand-main span { color: #fff; }
     .brand-sub { font-size: .74rem; color: rgba(255,255,255,.45); margin-top: 2px; }
     .nav-actions { display: flex; gap: 6px; flex-wrap: wrap; }
     .nav-btn {
@@ -387,7 +387,9 @@
     <div class="inner topbar-inner">
       <div class="brand" style="display:flex;align-items:center;gap:10px;">
         <div style="overflow:hidden;padding:0;background:white;border-radius:8px;width:52px;height:36px;flex-shrink:0;">
-          <img src="https://raw.githubusercontent.com/Seunghyup-CAA/alumni-site/main/CAU_LOGO_1.jpg" alt="CAU" style="width:100%;height:100%;object-fit:contain;">
+          <img src="https://raw.githubusercontent.com/Seunghyup-CAA/washington-alumni/main/CAU_LOGO_1.jpg" alt="CAU"
+            style="width:100%;height:100%;object-fit:contain;"
+            onerror="this.style.display='none';this.parentNode.innerHTML='<span style=\'font-family:serif;font-weight:800;color:#1f3b73;font-size:.75rem\'>CAU</span>';">
         </div>
         <div>
           <div class="brand-main">중앙대학교 <span>워싱턴</span> 동문회</div>
