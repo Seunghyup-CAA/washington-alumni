@@ -660,18 +660,26 @@
     const emails = records
       .map(r => r.email)
       .filter(e => e && e.trim() !== '' && e !== 'nan')
-      .join(',');
+      .join('; ');
 
-    const total = emails.split(',').length;
-    const subject = encodeURIComponent('[중앙대학교 워싱턴 동문회] 공지사항');
-    const body = encodeURIComponent(
-      '워싱턴 동문 여러분, 안녕하세요.\n이승협 회장입니다.\n\n[공지 내용을 여기에 입력하세요]\n\n중앙대학교 워싱턴 동문회\n6469 Little River Tpke. Alexandria, VA 22312\n(571) 215-6020'
-    );
+    const total = emails.split(';').filter(e=>e.trim()).length;
 
-    const confirm_msg = `이메일이 등록된 동문 ${total}명에게 공지 이메일을 보냅니다.\n\n이메일 앱이 열리면 내용을 작성 후 전송해 주세요.`;
-    if(!confirm(confirm_msg)) return;
-
-    openLink(`mailto:?bcc=${emails}&subject=${subject}&body=${body}`);
+    const doCopy = () => {
+      try {
+        navigator.clipboard.writeText(emails).then(()=>{
+          alert('✅ ' + total + '명의 이메일이 복사되었습니다!\n\nOutlook 새 메일 → BCC 칸에 붙여넣기(Ctrl+V) 하세요.');
+        });
+      } catch(e) {
+        const el = document.createElement('textarea');
+        el.value = emails;
+        document.body.appendChild(el);
+        el.select();
+        document.execCommand('copy');
+        document.body.removeChild(el);
+        alert('✅ ' + total + '명의 이메일이 복사되었습니다!\n\nOutlook 새 메일 → BCC 칸에 붙여넣기(Ctrl+V) 하세요.');
+      }
+    };
+    doCopy();
   }
 
   function toggleMenu(){
